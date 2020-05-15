@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="15dp"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/iv_show_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            android:src="@mipmap/ic_launcher" />
+
+        <EditText
+            android:id="@+id/ed_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入姓名"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/ed_idnum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入证件身份证号码"
+            android:maxLines="1" />
+        <Button
+            android:id="@+id/btn_choose_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="马上录制" />
+
+        <Button
+            android:id="@+id/btn_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="开始检测人证动作" />
+
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
+

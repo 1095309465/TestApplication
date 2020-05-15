@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!--<external-path-->
+        <!--name="my_images"-->
+        <!--path="YFAPPPicture/"/>-->
+    <external-path
+        name="my_image"
+        path="Pictures/"/>
+    <external-path
+        name="my_camera"
+        path="YFCamera/"/>
+
+    <cache-path name="internal" path="boxing" />
+
+    <external-path name="external" path="DCIM/bili/boxing" />
+    <external-path name="external_files" path="."/>
+
+</paths>

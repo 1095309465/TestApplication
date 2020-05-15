@@ -1,1 +1,1 @@
-include ':testapp'
+include ':app2', ':glidegzip', ':constraintlayout', ':app', ':app3', ':CheckAPP', ':PersonCheck'

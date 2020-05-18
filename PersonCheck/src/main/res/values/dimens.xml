@@ -13,4 +13,32 @@
     <integer name="anim_duration_very_long">1500</integer>
     <integer name="anim_duration_long">500</integer>
     <integer name="anim_duration_medium">300</integer>
+
+
+    <dimen name="dimen_radius_btn_corner">12dp</dimen>
+    <dimen name="size_text_btn">16sp</dimen>
+
+    <dimen name="spaceing_text_image">10dp</dimen>
+    <dimen name="space_activity">10dp</dimen>
+    <dimen name="divider">20dp</dimen>
+    <dimen name="photo_divider">1px</dimen>
+    <dimen name="trend_divider">1px</dimen>
+    <dimen name="video_divider">2dp</dimen>
+    <dimen name="chat_divider">12dp</dimen>
+    <dimen name="normaldivider">1dp</dimen>
+    <dimen name="user_center_bottom">90dp</dimen>
+
+    <dimen name="size_text_title">16sp</dimen>
+    <dimen name="text_size_36">18sp</dimen>
+    <dimen name="text_size_34">17sp</dimen>
+    <dimen name="text_size_32">16sp</dimen>
+    <dimen name="text_size_30">15sp</dimen>
+    <dimen name="text_size_28">14sp</dimen>
+    <dimen name="text_size_26">13sp</dimen>
+    <dimen name="text_size_24">12sp</dimen>
+    <dimen name="text_size_22">11sp</dimen>
+    <dimen name="text_size_20">10sp</dimen>
+
+    <dimen name="cpb_stroke_width">4dp</dimen>
+
 </resources>

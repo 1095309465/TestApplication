@@ -5,7 +5,7 @@ import android.view.SurfaceHolder;
 
 import com.cjt2325.cameralibrary.JCameraView;
 import com.cjt2325.cameralibrary.util.LogUtil;
-import com.yf.ml.view.camera.CustomeCameraInterface;
+import com.yf.personcheck.view.camera.CustomeCameraInterface;
 
 /**
  * =====================================

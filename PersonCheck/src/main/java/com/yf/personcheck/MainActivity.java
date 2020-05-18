@@ -13,6 +13,8 @@ import com.yf.personcheck.activitys.BaseActivity;
 import com.yf.personcheck.activitys.FaceCheckActivity;
 import com.yf.personcheck.activitys.IdentityActivity;
 import com.yf.personcheck.activitys.IdentitySessionActivity;
+import com.yf.personcheck.activitys.SimpleCheckActivity;
+import com.yf.personcheck.activitys.VideoCheckActivity;
 import com.yf.personcheck.model.TokenResp;
 import com.yf.personcheck.network.ApiUtils;
 import com.yf.personcheck.utils.ConfigConstants;
@@ -50,12 +52,7 @@ public class MainActivity extends BaseActivity {
 
                 Log.i("custome", "timer onGranted");
             }
-        }).onDenied(new Action<List<String>>() {
-            @Override
-            public void onAction(List<String> permissions) {
-                ToastUtil.show("未获取权限会影响认证检测");
-            }
-        }).start();
+        }).onDenied(permissions -> ToastUtil.show("未获取权限会影响认证检测=" + permissions.toString())).start();
     }
 
     public void btn(View view) {
@@ -107,6 +104,19 @@ public class MainActivity extends BaseActivity {
 
 
                 break;
+
+            case R.id.btn_id_check://身份检测
+                Intent inten4 = new Intent(this, SimpleCheckActivity.class);
+                startActivity(inten4);
+                break;
+
+            case R.id.btn_video_check:
+                Intent inten5 = new Intent(this, VideoCheckActivity.class);
+                startActivity(inten5);
+
+                break;
+
+
         }
     }
 

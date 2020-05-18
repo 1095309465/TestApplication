@@ -8,6 +8,8 @@
 <!--    <color name="colorPrimaryDark">#00574B</color>-->
 <!--    <color name="colorAccent">#D81B60</color>-->
     <color name="white">#FFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="main_color">#1FB2FF</color>
 
     <color name="window_background">#FFFFFF</color>
 </resources>

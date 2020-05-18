@@ -98,9 +98,9 @@ public class CustomeCaptureButton extends View {
         state = STATE_IDLE;                //初始化为空闲状态
         button_state = BUTTON_STATE_BOTH;  //初始化按钮为可录制可拍照
         LogUtil.i("CaptureButtom start");
-        duration = 40 * 1000;              //默认最长录制时间为10s
+        duration = 8 * 1000;              //默认最长录制时间为10s
         LogUtil.i("CaptureButtom end");
-        min_duration = 8000;              //默认最短录制时间为1.5s
+        min_duration = 3000;              //默认最短录制时间为1.5s
 
         center_X = (button_size + outside_add_size * 2) / 2;
         center_Y = (button_size + outside_add_size * 2) / 2;
@@ -298,7 +298,7 @@ public class CustomeCaptureButton extends View {
         @Override
         public void onTick(long millisUntilFinished) {
             updateProgress(millisUntilFinished);
-            if(customeListener != null){
+            if (customeListener != null) {
                 customeListener.showTime(millisUntilFinished);
             }
         }
@@ -357,7 +357,6 @@ public class CustomeCaptureButton extends View {
     public void setCustomeListener(CustomeListener customeListener) {
         this.customeListener = customeListener;
     }
-
 
 
     //设置按钮功能（拍照和录像）

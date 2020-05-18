@@ -3,7 +3,8 @@ package com.yf.personcheck.view.camera.state;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 
-import com.yf.ml.view.camera.CustomeCameraInterface;
+import com.yf.personcheck.view.camera.CustomeCameraInterface;
+
 
 /**
  * =====================================

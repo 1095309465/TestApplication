@@ -8,26 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
-        <TextView
-            android:id="@+id/tv_msg"
+        <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+            android:id="@+id/video"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:padding="15dp"
-            android:textColor="#000000"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/iv_show_video"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_height="200dp" />
 
         <EditText
             android:id="@+id/ed_name"
@@ -53,6 +37,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="开始检测人证动作" />
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/tv_msg"
+            android:textColor="#FF0000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 
 

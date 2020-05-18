@@ -46,7 +46,7 @@
     </LinearLayout>
 
 
-    <com.yf.ml.view.camera.CustomeCaptureLayout
+    <com.yf.personcheck.view.camera.CustomeCaptureLayout
         android:id="@+id/capture_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

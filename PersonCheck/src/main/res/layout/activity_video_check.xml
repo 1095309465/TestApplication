@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <EditText
+            android:id="@+id/ed_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入姓名"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/ed_idnum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入证件身份证号码"
+            android:maxLines="1" />
+        <Button
+            android:id="@+id/btn_choose_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="马上录制" />
+
+        <Button
+            android:id="@+id/btn_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="开始检测静默视频" />
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/tv_msg"
+            android:textColor="#FF0000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
+

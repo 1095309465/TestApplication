@@ -24,5 +24,13 @@ public class HttpURLConstants {
     //人证合一动作视频检测
     public static final String IDENTITY_VIDEO_ACTIONCHECK = BASE_URL + "identity/video/actioncheck";
 
+    //人证合一简单检测
+    public static final String IDENTITY_SIMPLE_CHECK = BASE_URL + "identity/simple/check";
+
+
+    //人证合一静默视频检测
+    public static final String IDENTITY_VIDEO_CHECK = BASE_URL + "identity/video/check";
+
+
 
 }

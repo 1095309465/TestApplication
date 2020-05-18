@@ -2,9 +2,7 @@ package com.yf.personcheck.activitys;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -18,7 +16,10 @@ import com.cjt2325.cameralibrary.listener.CaptureListener;
 import com.cjt2325.cameralibrary.listener.ClickListener;
 import com.cjt2325.cameralibrary.listener.ErrorListener;
 import com.cjt2325.cameralibrary.listener.JCameraListener;
+import com.google.gson.Gson;
 import com.yf.personcheck.R;
+import com.yf.personcheck.model.IdentitySessionResp;
+import com.yf.personcheck.network.ApiUtils;
 import com.yf.personcheck.utils.ConfigConstants;
 import com.yf.personcheck.utils.ToastUtil;
 import com.yf.personcheck.view.camera.CustomeCameraView;
@@ -29,24 +30,35 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class CameraActivity extends AppCompatActivity {
+    @BindView(R.id.jcameraview)
+    CustomeCameraView jCameraView;
+    @BindView(R.id.tv_msg)
+    TextView tvMsg;
+    @BindView(R.id.tv_time)
+    TextView tv_time;
 
-    public int mode = 0;
-    public static int scense_normal = 1;//normal
-    public static int scense_auth = 2;//认证 video
-    public static int scense_trends = 3;//动态 video and photo
-    private CustomeCameraView jCameraView;
-    private TextView tv_time;
+    private boolean needAction=false;//是否需要做动作
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_camera);
-        mode = getIntent().getIntExtra("data", 1);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ButterKnife.bind(this);
+        needAction=getIntent()==null?true:getIntent().getBooleanExtra("needAction",true);
+        init();
         initCamera();
+        if(needAction){
+            getIdentitySession();
+        }
+
     }
 
     private void initCamera() {
@@ -54,15 +66,9 @@ public class CameraActivity extends AppCompatActivity {
         tv_time = findViewById(R.id.tv_time);
         //设置视频保存路径
         jCameraView.setSaveVideoPath(Environment.getExternalStorageDirectory().getPath() + File.separator + ConfigConstants.PATH_VIDEO);
-        if (mode == scense_auth) {
-            jCameraView.setFeatures(JCameraView.BUTTON_STATE_ONLY_RECORDER);
-            jCameraView.setTip("长按录制视频");
-            jCameraView.setMediaQuality(JCameraView.MEDIA_QUALITY_MIDDLE);
-        } else if (mode == scense_trends) {
-            jCameraView.setFeatures(JCameraView.BUTTON_STATE_BOTH);
-            jCameraView.setTip("轻点拍照，长按录制视频");
-            jCameraView.setMediaQuality(JCameraView.MEDIA_QUALITY_MIDDLE);
-        }
+        jCameraView.setFeatures(JCameraView.BUTTON_STATE_ONLY_RECORDER);
+        jCameraView.setTip("长按录制视频");
+        jCameraView.setMediaQuality(JCameraView.MEDIA_QUALITY_MIDDLE);
         jCameraView.setErrorLisenter(new ErrorListener() {
             @Override
             public void onError() {
@@ -87,6 +93,9 @@ public class CameraActivity extends AppCompatActivity {
 //                String path = FileUtil.saveBitmap("JCamera", bitmap);
                 Intent intent = new Intent();
                 intent.putExtra("photo", photo);
+                if (identitySessionResp != null) {
+                    intent.putExtra("id", identitySessionResp.getResult().getSessionId());
+                }
 
                 setResult(RESULT_OK, intent);
                 finish();
@@ -100,6 +109,9 @@ public class CameraActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.putExtra("photo", photo);
                 intent.putExtra("video", url);
+                if (identitySessionResp != null) {
+                    intent.putExtra("id", identitySessionResp.getResult().getSessionId());
+                }
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }
@@ -125,7 +137,7 @@ public class CameraActivity extends AppCompatActivity {
 
             @Override
             public void recordShort(long time) {
-                ToastUtil.show("录制至少8秒的视频");
+                ToastUtil.show("录制至少3秒的视频");
                 tv_time.setVisibility(View.GONE);
             }
 
@@ -149,7 +161,6 @@ public class CameraActivity extends AppCompatActivity {
                 tv_time.setVisibility(View.GONE);
             }
         });
-
         jCameraView.setCustomeListener(new CustomeListener() {
             @Override
             public void showTime(long millionTime) {
@@ -158,38 +169,6 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        //全屏显示
-        if (Build.VERSION.SDK_INT >= 19) {
-            View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        } else {
-            View decorView = getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_FULLSCREEN;
-            decorView.setSystemUiVisibility(option);
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        jCameraView.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        jCameraView.onPause();
     }
 
     public static String saveBitmap(Bitmap b) {
@@ -207,5 +186,48 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    private IdentitySessionResp identitySessionResp;
 
+    private void getIdentitySession() {
+        ApiUtils.getIdentitySession(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String data = response.body().string();
+                runOnUiThread(() -> {
+
+                    IdentitySessionResp resp = new Gson().fromJson(data, IdentitySessionResp.class);
+                    if (resp == null) {
+                        ToastUtil.show("数据为空");
+                        return;
+                    }
+                    if (resp.getCode() == 200 && resp.getResult() != null) {
+                        identitySessionResp = resp;
+                        if (resp.getResult().getType() == 1) {//动作
+                            tvMsg.setText("请依次作出如下动作：" + resp.getResult().getMsg());
+                        } else if (resp.getResult().getType() == 2) {//数字
+                            tvMsg.setText("请依次念出如下数字：" + resp.getResult().getMsg());
+                        }
+
+
+                    } else {
+                        ToastUtil.show(resp.getMsg());
+                    }
+                });
+
+            }
+        });
+    }
+
+
+    private void init() {
+    }
+
+
+    private String TAG = CameraActivity.class.getSimpleName();
 }

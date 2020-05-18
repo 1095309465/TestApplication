@@ -23,19 +23,18 @@ import android.widget.VideoView;
 
 import androidx.annotation.RequiresApi;
 
-import com.cjt2325.cameralibrary.CameraInterface;
 import com.cjt2325.cameralibrary.FoucsView;
 import com.cjt2325.cameralibrary.listener.CaptureListener;
 import com.cjt2325.cameralibrary.listener.ClickListener;
 import com.cjt2325.cameralibrary.listener.ErrorListener;
 import com.cjt2325.cameralibrary.listener.JCameraListener;
 import com.cjt2325.cameralibrary.listener.TypeListener;
-import com.cjt2325.cameralibrary.state.CameraMachine;
 import com.cjt2325.cameralibrary.util.FileUtil;
 import com.cjt2325.cameralibrary.util.ScreenUtils;
 import com.cjt2325.cameralibrary.view.CameraView;
 import com.yf.personcheck.R;
 import com.yf.personcheck.view.camera.listener.CustomeListener;
+import com.yf.personcheck.view.camera.state.CameraMachine;
 
 import java.io.IOException;
 
@@ -137,7 +136,7 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
         iconSrc = a.getResourceId(R.styleable.JCameraView_iconSrc, R.drawable.ic_camera);
         iconLeft = a.getResourceId(R.styleable.JCameraView_iconLeft, 0);
         iconRight = a.getResourceId(R.styleable.JCameraView_iconRight, 0);
-        duration = a.getInteger(R.styleable.JCameraView_duration_max, 40 * 1000);       //没设置默认为10s
+        duration = a.getInteger(R.styleable.JCameraView_duration_max, 8 * 1000);       //没设置默认为10s
         a.recycle();
         initData();
         initView();
@@ -147,12 +146,7 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
         layout_width = ScreenUtils.getScreenWidth(mContext);
         //缩放梯度
         zoomGradient = (int) (layout_width / 16f);
-        machine = new CameraMachine(getContext(), this, new CameraInterface.CameraOpenOverCallback() {
-            @Override
-            public void cameraHasOpened() {
-                CustomeCameraView.this.cameraHasOpened();
-            }
-        });
+        machine = new CameraMachine(getContext(), this, this);
     }
 
     private void initView() {
@@ -395,7 +389,12 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
 
     //对焦框指示器动画
     private void setFocusViewWidthAnimation(float x, float y) {
-        machine.foucs(x,y, () -> mFoucsView.setVisibility(INVISIBLE));
+        machine.foucs(x, y, new CustomeCameraInterface.FocusCallback() {
+            @Override
+            public void focusSuccess() {
+                mFoucsView.setVisibility(INVISIBLE);
+            }
+        });
     }
 
     private void updateVideoViewSize(float videoWidth, float videoHeight) {

@@ -195,7 +195,6 @@ public class CustomeCaptureLayout extends FrameLayout {
                 }
             }
         });
-
         btn_capture.setCustomeListener(new CustomeListener() {
             @Override
             public void showTime(long millionTime) {

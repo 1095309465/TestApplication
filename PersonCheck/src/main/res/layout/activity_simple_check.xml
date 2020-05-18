@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activitys.SimpleCheckActivity">
+
+
+    <EditText
+        android:id="@+id/ed_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="请输入姓名"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/ed_idnum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入证件身份证号码"
+        android:maxLines="1" />
+
+    <Button
+        android:id="@+id/btn_check"
+        android:onClick="btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开始检测" />
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/tv_msg"
+        android:textColor="#FF0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

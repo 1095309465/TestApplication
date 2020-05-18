@@ -8,10 +8,19 @@
         android:id="@+id/jcameraview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:iconLeft="@mipmap/ic_back_white"
+        app:iconLeft="@mipmap/ic_back"
         app:iconMargin="20dp"
         app:iconSize="30dp"
         app:iconSrc="@drawable/ic_camera" />
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/tv_time"

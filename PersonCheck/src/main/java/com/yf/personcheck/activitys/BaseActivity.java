@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.yalantis.ucrop.UCrop;
 import com.yf.personcheck.utils.ConfigConstants;
 
@@ -22,26 +23,36 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected Context mContext;
 
+    protected ImmersionBar mImmersionBar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setLayoutResId());
         TAG = this.getClass().getSimpleName();
+        initImmersionBar();
         ButterKnife.bind(this);
         mContext = this;
-        setupToolbar();
         init();
+
+    }
+
+    protected void initImmersionBar() {
+        //在BaseActivity里初始化
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.statusBarDarkFont(true, 0.2f);
+//            mImmersionBar.statusBarDarkFont(true);
+        mImmersionBar.init();
     }
 
     protected void init() {
+
 
     }
 
     protected abstract int setLayoutResId();
 
     protected void setupToolbar() {
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 

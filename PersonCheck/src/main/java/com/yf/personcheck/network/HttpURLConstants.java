@@ -4,7 +4,8 @@ public class HttpURLConstants {
 
 
     //基础域名
-    public static final String BASE_URL = "https://api.hiyanai.com/v1/";
+    public static final String BASE_URL = "https://test.hiyanai.com/v1/";
+//    public static final String BASE_URL = "https://api.hiyanai.com/v1/";
 
     //获取权限
     public static final String AUTH_GET_TOKEN = BASE_URL + "auth/getToken";

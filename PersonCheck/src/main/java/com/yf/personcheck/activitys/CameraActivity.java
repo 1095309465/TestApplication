@@ -3,6 +3,7 @@ package com.yf.personcheck.activitys;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -44,7 +45,9 @@ public class CameraActivity extends AppCompatActivity {
     @BindView(R.id.tv_time)
     TextView tv_time;
 
-    private boolean needAction=false;//是否需要做动作
+    private boolean needAction = false;//是否需要做动作
+
+    private IdentitySessionResp identitySessionResp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +55,20 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ButterKnife.bind(this);
-        needAction=getIntent()==null?true:getIntent().getBooleanExtra("needAction",true);
+        needAction = getIntent() == null ? true : getIntent().getBooleanExtra("needAction", true);
         init();
         initCamera();
-        if(needAction){
-            getIdentitySession();
+        if (needAction) {
+//            getIdentitySession();
+            identitySessionResp = getIntent() == null ? null : (IdentitySessionResp) getIntent().getSerializableExtra("data");
+            if (identitySessionResp != null) {
+                if (identitySessionResp.getResult().getType() == 1) {//动作
+                    tvMsg.setText("请依次作出如下动作：" + identitySessionResp.getResult().getMsg());
+                } else if (identitySessionResp.getResult().getType() == 2) {//数字
+                    tvMsg.setText("请依次念出如下数字：" + identitySessionResp.getResult().getMsg());
+                }
+            }
+
         }
 
     }
@@ -96,7 +108,6 @@ public class CameraActivity extends AppCompatActivity {
                 if (identitySessionResp != null) {
                     intent.putExtra("id", identitySessionResp.getResult().getSessionId());
                 }
-
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -112,6 +123,7 @@ public class CameraActivity extends AppCompatActivity {
                 if (identitySessionResp != null) {
                     intent.putExtra("id", identitySessionResp.getResult().getSessionId());
                 }
+                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(url)))); //刷新单个文件
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }
@@ -171,6 +183,18 @@ public class CameraActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        jCameraView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        jCameraView.onPause();
+    }
+
     public static String saveBitmap(Bitmap b) {
         String jpegName = Environment.getExternalStorageDirectory() + "/" + ConfigConstants.PATH_PICTURE + "/" + System.currentTimeMillis() + ".jpg";
         try {
@@ -186,7 +210,6 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    private IdentitySessionResp identitySessionResp;
 
     private void getIdentitySession() {
         ApiUtils.getIdentitySession(new Callback() {

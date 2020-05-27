@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/step_two"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="  请上传目标人物的正面大头照，用于后续活体检测人脸对比，验证是否为同一个人。"
+        android:textColor="#9c9c9c" />
+
+    <ImageView
+        android:id="@+id/iv_show1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_default_photo" />
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/btn_next_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="下一步"
+        android:textColor="#FFFFFF"
+        app:rv_backgroundColor="@color/colorPrimary"
+        app:rv_cornerRadius="5dp" />
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/btn_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="70dp"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="上传照片"
+        android:textColor="#FFFFFF"
+        app:rv_backgroundColor="@color/colorPrimary"
+        app:rv_cornerRadius="5dp"
+        app:rv_strokeColor="@color/colorPrimary"
+        app:rv_strokeWidth="1px" />
+
+
+</LinearLayout>

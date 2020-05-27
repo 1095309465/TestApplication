@@ -61,7 +61,10 @@ dependencies {
     api 'jp.wasabeef:glide-transformations:2.0.2'
 //仿微信cameraasd
     api 'cjt.library.wheel:camera:1.1.9'
-//
+
+    api 'com.blankj:utilcode:1.13.11'
     //播放器
     api 'com.shuyu:GSYVideoPlayer:5.0.0-beta'
+    api 'com.gyf.barlibrary:barlibrary:2.3.0'
+    api 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
 }

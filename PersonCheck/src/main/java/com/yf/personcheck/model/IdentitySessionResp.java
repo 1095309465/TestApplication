@@ -1,6 +1,8 @@
 package com.yf.personcheck.model;
 
-public class IdentitySessionResp {
+import java.io.Serializable;
+
+public class IdentitySessionResp implements Serializable {
 
 
     /**
@@ -47,7 +49,7 @@ public class IdentitySessionResp {
         this.result = result;
     }
 
-    public static class ResultBean {
+    public static class ResultBean implements Serializable{
         @Override
         public String toString() {
             return "ResultBean{" +

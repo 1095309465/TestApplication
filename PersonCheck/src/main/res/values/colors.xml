@@ -1,15 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#000000</color>
-        <color name="colorPrimaryDark">#131313</color>
-        <color name="colorAccent">#1D1D1D</color>
+    <color name="colorPrimary">#154AFE</color>
+    <color name="colorPrimaryDark">#154AFE</color>
+    <color name="colorAccent">#154AFE</color>
 
-<!--    <color name="colorPrimary">#008577</color>-->
-<!--    <color name="colorPrimaryDark">#00574B</color>-->
-<!--    <color name="colorAccent">#D81B60</color>-->
+    <!--    <color name="colorPrimary">#008577</color>-->
+    <!--    <color name="colorPrimaryDark">#00574B</color>-->
+    <!--    <color name="colorAccent">#D81B60</color>-->
     <color name="white">#FFF</color>
     <color name="transparent">#00000000</color>
     <color name="main_color">#1FB2FF</color>
 
-    <color name="window_background">#FFFFFF</color>
+    <color name="them_color_gold">#EFC97F</color>
+    <color name="app_main">@color/bg_AppBase</color>
+    <!--    <color name="bg_AppBase">#FF6376</color>-->
+    <color name="bg_AppBase">@color/color_F6C972</color>
+    <color name="bg_title_black">#000</color>
+    <color name="bg_black">#000</color>
+    <color name="bg_page">#131313</color>
+    <color name="bg_page_13">#131313</color>
+    <color name="bg_1d">#1D1D1D</color>
+    <color name="bg_black_212121">#212121</color>
+    <color name="bg_page_f5">#F5F5F5</color>
+
+    <color name="gray_37">#373737</color>
+    <color name="yellow_ec8">#FFE8C784</color>
+
+
+    <color name="red">#900</color>
+    <color name="purple">#9013FE</color>
+    <color name="login_more">#B3FFFFFF</color>
+
+    <color name="color_bg_line">#dbdbdb</color>
+    <color name="qian1_gray">#F8F8F8</color>
+
+    <color name="red_f01">#FF001E</color>
+    <color name="text_black_24">#242424</color>
+    <color name="text_gray_a9">#A9A9A9</color>
+    <color name="text_gray_a5">#A5A5A5</color>
+    <color name="text_gray_e6">#E6E6E6</color>
+    <color name="text_950">#9E5F00</color>
+    <color name="text_white_de">#dedede</color>
+    <color name="text_white_dc">#dcdcdc</color>
+    <color name="text_gray_8c">#FF8C8C8C</color>
+
+
+    <color name="shape_ffe400">#FFE400</color>
+    <color name="shape_ffc600">#FFc600</color>
+
+    <color name="app_divide_da">#DADADA</color>
+    <color name="bg_auth_red">#FF4F4F</color>
+    <color name="bg_gray_e">#EEEEEE</color>
+    <color name="bg_gray_fa">#FAFAFA</color>
+    <color name="bg_chat_tip">#d4d4d4</color>
+    <color name="black">#000</color>
+    <color name="gray_d8">#d8d8d8</color>
+    <color name="app_unselected_color">#656565</color>
+    <color name="text_content">#676767</color>
+    <color name="text_black">#000</color>
+    <color name="text_black_1a">#1A1A1A</color>
+    <color name="text_black_3">#3D3A39</color>
+    <color name="text_gray_4a">#4A4A4A</color>
+    <color name="text_gray_9">#999</color>
+    <color name="text_gray_9b">#9B9B9B</color>
+    <color name="text_gray_b0">#B0B0B0</color>
+    <color name="text_gray_ba">#BABABA</color>
+    <color name="text_gray_e5">#E5E5E5</color>
+    <color name="text_gray_c2">#C2C2C2</color>
+    <color name="text_gray_ca">#cacaca</color>
+    <color name="text_red_theme">@color/app_main</color>
+    <color name="text_yellow_f5">#F5A623</color>
+    <color name="text_yellow_fd3">#FFD236</color>
+    <color name="text_blue">#007AFF</color>
+    <color name="text_orange_f70">#FF7200</color>
+    <!--    <color name="text_fe1e41">#FE1E41</color>-->
+    <color name="text_fe1e41">#EFC97F</color>
+    <color name="color_C5B43F">#C5B43F</color>
+    <color name="time_tree_text_color">#A39530</color>
+    <color name="text_red">#FF4F4F</color>
+
+    <color name="text_yellow_theme">#FFBC00</color>
+
+
+    <!-- start zxing -->
+    <!-- end zxing -->
+
+
+    <color name="window_background">@color/white</color>
+
+    <!-- start zxing -->
+    <!-- end zxing -->
+    <color name="tag_FF8BAF">#FF8BAF</color>
+    <color name="tag_D1AEFA">#D1AEFA</color>
+    <color name="tag_FFB566">#FFB566</color>
+    <!-- 全新定义颜色 -->
+
+    <color name="text_24">#242424</color>
+    <color name="text_65">#656565</color>
+
+    <color name="color_F6C972">#F6C972</color>
+    <!--待定-->
+    <color name="app_main_selected">#104398</color>
+    <color name="cpb_blue">#ff0099cc</color>
+    <!--    <color name="app_title">#3D3A39</color>-->
+    <color name="app_title">#FFF</color>
+    <color name="app_title_hide">#DADADA</color>
+    <color name="app_content">#4A4A4A</color>
+    <color name="app_content_hide">#9B9B9B</color>
+    <!--时间-->
+    <color name="app_content_third">#CCCCCC</color>
+    <!---->
+    <!--    <color name="app_divide">#f4f4f4</color>-->
+    <color name="app_divide">#EEEEEE</color>
+    <color name="line_gray_f5">#F5F5F5</color>
+    <color name="line_gray_da">#DADADA</color>
+    <!--<color name="app_divide">#DADADA</color>-->
+    <color name="text_orange_f43">#FF4343</color>
+    <color name="cpb_grey">#ffdedede</color>
+    <color name="app_content_second">#9c9c9c</color>
+    <color name="app_main_bg">#f4f4f4</color>
+    <!--    <color name="color_divider_line_gray">#e2e2e2</color>-->
+    <color name="color_divider_line_gray">#2F2F2F</color>
+    <color name="color_gray_light_content_text">#5d5d5d</color>
+    <color name="cpb_white">@android:color/white</color>
+    <color name="video_auth_change_date_top_red">#88ff001e</color>
+    <color name="video_auth_change_date_top_green">#887ED321</color>
+
+    <color name="cpb_blue_dark">#27A7E1</color>
+    <color name="cpb_red">#FE223C</color>
+    <color name="cpb_red_dark">#FF006B</color>
+
+    <color name="text_black_212121">#212121</color>
+
+
 </resources>

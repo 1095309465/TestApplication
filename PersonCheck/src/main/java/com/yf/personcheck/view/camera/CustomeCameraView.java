@@ -2,6 +2,7 @@ package com.yf.personcheck.view.camera;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.VideoView;
@@ -186,7 +188,7 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
                 mSwitchCamera.setVisibility(INVISIBLE);
                 mFlashLamp.setVisibility(INVISIBLE);
                 machine.capture();
-                if(captureListener != null){
+                if (captureListener != null) {
                     captureListener.takePictures();
                 }
             }
@@ -196,7 +198,7 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
                 mSwitchCamera.setVisibility(INVISIBLE);
                 mFlashLamp.setVisibility(INVISIBLE);
                 machine.record(mVideoView.getHolder().getSurface(), screenProp);
-                if(captureListener != null){
+                if (captureListener != null) {
                     captureListener.recordStart();
                 }
             }
@@ -212,7 +214,7 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
                         machine.stopRecord(true, time);
                     }
                 }, 1500 - time);
-                if(captureListener != null){
+                if (captureListener != null) {
                     captureListener.recordShort(time);
                 }
             }
@@ -220,7 +222,7 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
             @Override
             public void recordEnd(long time) {
                 machine.stopRecord(false, time);
-                if(captureListener != null){
+                if (captureListener != null) {
                     captureListener.recordEnd(time);
                 }
             }
@@ -228,7 +230,7 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
             @Override
             public void recordZoom(float zoom) {
                 machine.zoom(zoom, CustomeCameraInterface.TYPE_RECORDER);
-                if(captureListener != null){
+                if (captureListener != null) {
                     captureListener.recordZoom(zoom);
                 }
             }
@@ -238,7 +240,7 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
                 if (errorLisenter != null) {
                     errorLisenter.AudioPermissionError();
                 }
-                if(captureListener != null){
+                if (captureListener != null) {
                     captureListener.recordError();
                 }
             }
@@ -283,11 +285,13 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
         mCaptureLayout.setCustomeLisenter(new CustomeListener() {
             @Override
             public void showTime(long millionTime) {
-                if(customeListener != null)
+                if (customeListener != null)
                     customeListener.showTime(millionTime);
 
             }
         });
+
+        setOnPreviewSizeListener();
     }
 
     @Override
@@ -402,8 +406,10 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
             FrameLayout.LayoutParams videoViewParam;
             int height = (int) ((videoHeight / videoWidth) * getWidth());
             videoViewParam = new LayoutParams(LayoutParams.MATCH_PARENT, height);
-            videoViewParam.gravity = Gravity.CENTER;
+
+            videoViewParam.gravity = Gravity.CENTER_HORIZONTAL;
             mVideoView.setLayoutParams(videoViewParam);
+            Log.e("录制控件", "updateVideoViewSize");
         }
     }
 
@@ -423,11 +429,46 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
 
     private ErrorListener errorLisenter;
 
+    private CustomeCameraInterface.OnPreviewSizeListener onPreviewSizeListener;
+
     //启动Camera错误回调
     public void setErrorLisenter(ErrorListener errorLisenter) {
         this.errorLisenter = errorLisenter;
         CustomeCameraInterface.getInstance().setErrorLinsenter(errorLisenter);
     }
+
+    public void setOnPreviewSizeListener() {
+        this.onPreviewSizeListener = new CustomeCameraInterface.OnPreviewSizeListener() {
+            @Override
+            public void getPreviewSize(Camera.Size size) {
+                Log.e("获取到视频宽高信息", "size=" + size.width + "," + size.height);
+
+
+
+                ((Activity)mContext).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+//                        ViewGroup.LayoutParams layoutParams = mVideoView.getLayoutParams();
+//                        //横屏
+////                                if (displayOrientation % 180 == 0) {
+////                                    layoutParams.height = layoutParams.width * previewSize.height / previewSize.width;
+////                                }
+////                                //竖屏
+////                                else {
+////                                    layoutParams.height = layoutParams.width * previewSize.width / previewSize.height;
+////                                }
+//                        layoutParams.width = (int) (layoutParams.width * 0.8f);
+//                        layoutParams.height = (int) (layoutParams.width * size.width * 1f / size.height);
+//                        mVideoView.setLayoutParams(layoutParams);
+                    }
+                });
+
+            }
+        };
+        CustomeCameraInterface.getInstance().setOnPreviewSizeListener(onPreviewSizeListener);
+    }
+
+    // CustomeCameraInterface.getInstance().setErrorLinsenter(errorLisenter);
 
     //设置CaptureButton功能（拍照和录像）
     public void setFeatures(int state) {
@@ -446,7 +487,7 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
                 stopVideo();    //停止播放
                 //初始化VideoView
                 FileUtil.deleteFile(videoUrl);
-                mVideoView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+//                mVideoView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                 machine.start(mVideoView.getHolder(), screenProp);
                 break;
             case TYPE_PICTURE:
@@ -455,7 +496,7 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
             case TYPE_SHORT:
                 break;
             case TYPE_DEFAULT:
-                mVideoView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+//                mVideoView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                 break;
         }
         mSwitchCamera.setVisibility(VISIBLE);
@@ -468,7 +509,7 @@ public class CustomeCameraView extends FrameLayout implements CustomeCameraInter
         switch (type) {
             case TYPE_VIDEO:
                 stopVideo();    //停止播放
-                mVideoView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+//                mVideoView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                 machine.start(mVideoView.getHolder(), screenProp);
                 if (jCameraLisenter != null) {
                     jCameraLisenter.recordSuccess(videoUrl, firstFrame);

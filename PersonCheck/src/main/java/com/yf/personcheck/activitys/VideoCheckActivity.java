@@ -2,6 +2,7 @@ package com.yf.personcheck.activitys;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -180,7 +181,7 @@ public class VideoCheckActivity extends BaseActivity {
             if (data == null) return;
             videoPath = data.getStringExtra("video");//视频路径
 
-
+            Log.e("视频录制返回","路径path="+videoPath);
             video.setUp(videoPath, true, "录制视频");
             video.startPlayLogic();
 

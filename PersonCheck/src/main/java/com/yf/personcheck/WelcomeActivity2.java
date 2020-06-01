@@ -74,7 +74,7 @@ public class WelcomeActivity2 extends BaseActivity {
         className = getIntent() == null ? null : (Class) getIntent().getSerializableExtra("className");
     }
 
-    @OnClick({R.id.btn_check, R.id.tv_all})
+    @OnClick({R.id.btn_check, R.id.tv_all,R.id.iv_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_check:
@@ -90,6 +90,9 @@ public class WelcomeActivity2 extends BaseActivity {
                 break;
             case R.id.tv_all:
                 new XieYiDialog(this).show();
+                break;
+            case R.id.iv_back://返回
+
                 break;
         }
     }

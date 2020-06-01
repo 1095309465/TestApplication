@@ -405,6 +405,7 @@ public class PhotoCheckActivity extends BaseActivity implements SelectPhotoMenuP
 
                     Matisse.from((Activity) mContext)
                             .choose(MimeType.ofImage())
+                            .maxSelectable(1)
                             .showSingleMediaType(true)
                             .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                             .thumbnailScale(1f)

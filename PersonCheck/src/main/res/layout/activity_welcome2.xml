@@ -34,8 +34,8 @@
                 android:background="?android:actionBarItemBackground"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:src="@mipmap/ic_back_white"
-                android:visibility="gone" />
+                android:src="@mipmap/ic_back_black"
+                 />
 
             <TextView
                 android:id="@+id/tv_back"

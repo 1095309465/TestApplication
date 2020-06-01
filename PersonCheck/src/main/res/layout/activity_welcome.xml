@@ -7,6 +7,7 @@
     tools:context=".WelcomeActivity">
 
     <LinearLayout
+
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -113,6 +114,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="12sp"
             android:background="@drawable/shape_home_bg"
             android:drawableLeft="@mipmap/ic_tupian_jiancha"
             android:drawablePadding="7dp"
@@ -121,10 +123,11 @@
             android:text="图像审核" />
 
         <Button
+            android:textSize="12sp"
             android:id="@+id/btn_video_check"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_weight="1"
             android:background="@drawable/shape_home_bg"
             android:drawableLeft="@mipmap/ic_video_check"
@@ -161,6 +164,7 @@
             android:drawableLeft="@mipmap/ic_upload_photo"
             android:drawablePadding="7dp"
             android:paddingLeft="20dp"
+            android:textSize="12sp"
             android:paddingRight="20dp"
             android:text="上传图片对比" />
 
@@ -168,8 +172,9 @@
             android:id="@+id/btn_slide_mode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_weight="1"
+            android:textSize="12sp"
             android:background="@drawable/shape_home_bg"
             android:drawableLeft="@mipmap/ic_slide_check"
             android:drawablePadding="7dp"
@@ -188,6 +193,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:layout_marginBottom="30dp"
             android:id="@+id/btn_action"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -196,13 +202,15 @@
             android:drawableLeft="@mipmap/ic_action_check"
             android:drawablePadding="7dp"
             android:paddingLeft="20dp"
+            android:textSize="12sp"
             android:paddingRight="20dp"
             android:text="动作模式活体" />
 
         <Button
+            android:layout_marginBottom="30dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_weight="1"
             android:background="@drawable/shape_home_bg"
             android:drawableLeft="@mipmap/ic_tupian_jiancha"

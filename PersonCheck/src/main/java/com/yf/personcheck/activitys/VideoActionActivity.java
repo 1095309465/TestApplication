@@ -236,14 +236,40 @@ public class VideoActionActivity extends BaseActivity {
                         ToastUtil.show("数据为空");
                         return;
                     }
-                    if (resp.getCode() == 200 && resp.getResult() != null && "0000000".equals(resp.getResult().getResultDetail())) {
-                        tvStepOne.setTextColor(Color.parseColor("#333333"));
-                        tvStepTwo.setTextColor(Color.parseColor("#154AFE"));
-                        tvStepThree.setTextColor(Color.parseColor("#333333"));
-                        stepOne.setVisibility(View.GONE);
+//                    if (resp.getCode() == 200 && resp.getResult() != null && "0000000".equals(resp.getResult().getResultDetail())) {
+//                        tvStepOne.setTextColor(Color.parseColor("#333333"));
+//                        tvStepTwo.setTextColor(Color.parseColor("#154AFE"));
+//                        tvStepThree.setTextColor(Color.parseColor("#333333"));
+//                        stepOne.setVisibility(View.GONE);
+//
+//                    } else {
+//                        ToastUtil.show("检测结果code=" + resp.getCode() + "," + resp.getResult().getResultMsg());
+//                    }
 
+                    if (resp.getCode() == 200 && resp.getResult() != null) {
+                        tvMsg.setText(resp.getResult().getResultMsg() );
+
+
+                        ivShowEnd.setVisibility(View.VISIBLE);
+                        btnOk.setVisibility(View.VISIBLE);
                     } else {
-                        ToastUtil.show("检测结果code=" + resp.getCode() + "," + resp.getResult().getResultMsg());
+
+                        ivShowEnd.setVisibility(View.VISIBLE);
+                        ToastUtil.show("身份信息匹配失败");
+                        btnOk.setVisibility(View.VISIBLE);
+                    }
+                    if ("0000000".equals(resp.getResult().getResultDetail())) {
+                        ivShowEnd.setImageResource(R.mipmap.ic_check_ok);
+                        btnOk.setVisibility(View.VISIBLE);
+                        btnAgain.setVisibility(View.GONE);
+                        btnBack.setVisibility(View.GONE);
+                        tvMsg.setText("验证已通过");
+                        stepOne.setVisibility(View.GONE);
+                    } else {
+                        ivShowEnd.setImageResource(R.mipmap.ic_check_no);
+                        btnOk.setVisibility(View.GONE);
+                        btnAgain.setVisibility(View.VISIBLE);
+                        btnBack.setVisibility(View.VISIBLE);
                     }
 
                 });
@@ -376,13 +402,13 @@ public class VideoActionActivity extends BaseActivity {
                         return;
                     }
                     if (resp.getCode() == 200 && resp.getResult() != null) {
-                        tvMsg.setText(resp.getResult().getResultMsg() + ",相似度" + resp.getResult().getSimilarity());
+                        tvMsg.setText(resp.getResult().getResultMsg() + resp.getResult().getSimilarity());
 
 
                         ivShowEnd.setVisibility(View.VISIBLE);
                     } else {
                         ivShowEnd.setVisibility(View.VISIBLE);
-                        ToastUtil.show("检测结果code=" + resp.getCode() + "," + resp.getResult().getResultMsg());
+                        ToastUtil.show("身份信息匹配失败");
                         btnOk.setVisibility(View.GONE);
                         btnAgain.setVisibility(View.VISIBLE);
                         btnBack.setVisibility(View.VISIBLE);
@@ -392,6 +418,7 @@ public class VideoActionActivity extends BaseActivity {
                         btnOk.setVisibility(View.VISIBLE);
                         btnAgain.setVisibility(View.GONE);
                         btnBack.setVisibility(View.GONE);
+                        tvMsg.setText("验证已通过");
                     } else {
                         ivShowEnd.setImageResource(R.mipmap.ic_check_no);
                         btnOk.setVisibility(View.GONE);

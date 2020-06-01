@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="填写用户信息" />
+                android:text="用户信息认证" />
 
             <TextView
                 android:id="@+id/tv_more"

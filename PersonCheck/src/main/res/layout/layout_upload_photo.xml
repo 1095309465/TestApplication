@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="  请上传目标人物的正面大头照，用于后续活体检测人脸对比，验证是否为同一个人。"
+        android:text="请上传目标人物的正面大头照，用于后续活体检测人脸对比，验证是否为同一个人。"
         android:textColor="#9c9c9c" />
 
     <ImageView

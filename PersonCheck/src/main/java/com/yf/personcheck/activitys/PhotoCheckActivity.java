@@ -183,10 +183,12 @@ public class PhotoCheckActivity extends BaseActivity implements SelectPhotoMenuP
                 break;
 
             case R.id.btn_upload://上传照片
+                tvTitle.setText("上传目标照片");
                 pieckPhoto();
                 break;
 
             case R.id.btn_next_two:
+                tvTitle.setText("验证结果");
                 check();
                 break;
 
@@ -195,6 +197,7 @@ public class PhotoCheckActivity extends BaseActivity implements SelectPhotoMenuP
 
                 break;
             case R.id.btn_again:
+                tvTitle.setText("填写用户信息");
                 stepOne.setVisibility(View.VISIBLE);
                 stepTwo.setVisibility(View.VISIBLE);
                 tvStepOne.setTextColor(Color.parseColor("#333333"));
@@ -260,7 +263,7 @@ public class PhotoCheckActivity extends BaseActivity implements SelectPhotoMenuP
                             return;
                         }
                         if (resp.getCode() == 200 && resp.getResult() != null) {
-                            tvMsg.setText(resp.getResult().getResultMsg() + ",相似度" + resp.getResult().getSimilarity());
+                            tvMsg.setText(resp.getResult().getResultMsg());
 
 
                             ivShowEnd.setVisibility(View.VISIBLE);
@@ -268,7 +271,7 @@ public class PhotoCheckActivity extends BaseActivity implements SelectPhotoMenuP
                         } else {
 
                             ivShowEnd.setVisibility(View.VISIBLE);
-                            ToastUtil.show("检测结果code=" + resp.getCode() + "," + resp.getResult().getResultMsg());
+                            ToastUtil.show("身份信息匹配失败");
                             btnOk.setVisibility(View.VISIBLE);
                         }
                         if ("0000000".equals(resp.getResult().getResultDetail())) {
@@ -276,7 +279,9 @@ public class PhotoCheckActivity extends BaseActivity implements SelectPhotoMenuP
                             btnOk.setVisibility(View.VISIBLE);
                             btnAgain.setVisibility(View.GONE);
                             btnBack.setVisibility(View.GONE);
+                            tvMsg.setText("验证已通过");
                         } else {
+                            tvMsg.setText("验证失败:活体检测未通过,请重试");
                             ivShowEnd.setImageResource(R.mipmap.ic_check_no);
                             btnOk.setVisibility(View.GONE);
                             btnAgain.setVisibility(View.VISIBLE);
@@ -405,7 +410,6 @@ public class PhotoCheckActivity extends BaseActivity implements SelectPhotoMenuP
 
                     Matisse.from((Activity) mContext)
                             .choose(MimeType.ofImage())
-                            .maxSelectable(1)
                             .showSingleMediaType(true)
                             .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                             .thumbnailScale(1f)

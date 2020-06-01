@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.flyco.roundview.RoundTextView;
 import com.yf.personcheck.activitys.BaseActivity;
+import com.yf.personcheck.utils.ConfigManager;
 import com.yf.personcheck.utils.ToastUtil;
 import com.yf.personcheck.view.XieYiDialog;
 
@@ -72,9 +73,15 @@ public class WelcomeActivity2 extends BaseActivity {
     protected void init() {
         super.init();
         className = getIntent() == null ? null : (Class) getIntent().getSerializableExtra("className");
+        if (ConfigManager.getSharedPreferences(Allow, 0) == 1) {
+            startActivity(new Intent(this, className));
+            finish();
+        }
     }
 
-    @OnClick({R.id.btn_check, R.id.tv_all,R.id.iv_back})
+    public final String Allow = "allow";
+
+    @OnClick({R.id.btn_check, R.id.tv_all, R.id.iv_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_check:
@@ -83,15 +90,18 @@ public class WelcomeActivity2 extends BaseActivity {
                     return;
                 }
                 if (className != null) {
+                    ConfigManager.setSharedPreferences(Allow, 1);
                     startActivity(new Intent(this, className));
                     finish();
                 }
+
 
                 break;
             case R.id.tv_all:
                 new XieYiDialog(this).show();
                 break;
             case R.id.iv_back://返回
+                finish();
 
                 break;
         }

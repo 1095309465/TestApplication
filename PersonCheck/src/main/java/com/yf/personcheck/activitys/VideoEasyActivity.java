@@ -151,7 +151,7 @@ public class VideoEasyActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.iv_back, R.id.btn_bext, R.id.btn_next_two, R.id.btn_ok,R.id.btn_again, R.id.btn_back})
+    @OnClick({R.id.iv_back, R.id.btn_bext, R.id.btn_next_two, R.id.btn_ok, R.id.btn_again, R.id.btn_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -226,7 +226,7 @@ public class VideoEasyActivity extends BaseActivity {
                         return;
                     }
                     if (resp.getCode() == 200 && resp.getResult() != null) {
-                        tvMsg.setText(resp.getResult().getResultMsg() + ",相似度" + resp.getResult().getSimilarity());
+                        tvMsg.setText(resp.getResult().getResultMsg());
 
 
                         ivShowEnd.setVisibility(View.VISIBLE);
@@ -234,7 +234,7 @@ public class VideoEasyActivity extends BaseActivity {
                     } else {
 
                         ivShowEnd.setVisibility(View.VISIBLE);
-                        ToastUtil.show("检测结果code=" + resp.getCode() + "," + resp.getResult().getResultMsg());
+                        ToastUtil.show("身份信息匹配失败");
                         btnOk.setVisibility(View.VISIBLE);
                     }
                     if ("0000000".equals(resp.getResult().getResultDetail())) {
@@ -242,6 +242,7 @@ public class VideoEasyActivity extends BaseActivity {
                         btnOk.setVisibility(View.VISIBLE);
                         btnAgain.setVisibility(View.GONE);
                         btnBack.setVisibility(View.GONE);
+                        tvMsg.setText("验证已通过");
                     } else {
                         ivShowEnd.setImageResource(R.mipmap.ic_check_no);
                         btnOk.setVisibility(View.GONE);
@@ -349,7 +350,6 @@ public class VideoEasyActivity extends BaseActivity {
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
-
 
 
 }

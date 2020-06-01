@@ -5,4 +5,10 @@
     <string name="save_video_success">保存视频成功！</string>
     <string name="save_video_too_short">视频太短啦！</string>
     <string name="save_video_too_long">视频太长啦！</string>
+
+
+    <plurals name="error_over_count">
+        <item quantity="one">You can only select one media file</item>
+        <item quantity="many">You can only select up to %1$d media files</item>
+    </plurals>
 </resources>

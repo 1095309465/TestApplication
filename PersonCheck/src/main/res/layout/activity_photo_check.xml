@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="填写用户信息"
+            android:text="填写信息"
             android:textColor="@color/colorPrimary"
             android:textSize="14sp" />
 

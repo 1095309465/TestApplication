@@ -18,7 +18,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:maxLines="5"
-        android:text="实名核身用户须知"
+        android:text="实名审核用户须知"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
@@ -32,28 +32,28 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
         android:gravity="center"
-        android:text="客户侧协议内容"
+        android:text="客户协议内容"
         android:textColor="@color/text_black_3"
         android:textSize="16sp"
         android:visibility="visible" />
 
     <TextView
-        android:layout_marginTop="5dp"
         android:id="@+id/tv_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
-        android:gravity="center"
-        android:text="  本服务由海宴实名核身技术方案'海宴明辨'提供技术支持。您在接受服务过程中，需要调用您的手机摄像头，并且根据业务场景的不同，需要读取您的身份证个人信息，包括姓名、性别、民族、出生日期、常住户口所在地住址、公民身份号码、本人相片、证件的有效期和签发机关等信息，或者 截取您的脸部图像和认证视频，从而实现身份比对。
-如您使用不成功，请确保您已经按照要求正确使用本服务，或者向为您办理业务的机构咨询其他办理渠道。"
+        android:gravity="left"
+        android:text="\t\t\t\t本服务由海宴实名核身技术方案'海宴明辨'提供技术支持。您在接受服务过程中，需要调用您的手机摄像头，并且根据业务场景的不同，需要读取您的身份证个人信息，包括姓名、性别、民族、出生日期、常住户口所在地住址、公民身份号码、本人相片、证件的有效期和签发机关等信息，或者 截取您的脸部图像和认证视频，从而实现身份比对。
+\n\t\t\t\t如您使用不成功，请确保您已经按照要求正确使用本服务，或者向为您办理业务的机构咨询其他办理渠道。"
         android:textColor="@color/text_black_3"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:visibility="visible" />
 
     <View
